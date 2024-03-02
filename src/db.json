@@ -1,0 +1,33 @@
+{
+    "product":[
+        {
+            "id": 1,
+            "category": "men",
+            "productName": "Dress",
+            "description": "A black dress",
+            "price": "1200"
+        },
+        {
+            "id": 2,
+            "category": "women",
+            "productName": "Dress",
+            "description": "A black dress",
+            "price": "1200"
+        },
+        {
+            "id": 3,
+            "category": "accesories",
+            "productName": "Dress",
+            "description": "A black dress",
+            "price": "1200"
+        },
+        {
+            "id": 4,
+            "category": "footwear",
+            "productName": "Dress",
+            "description": "A black dress",
+            "price": "1200"
+        }
+
+    ]
+}
