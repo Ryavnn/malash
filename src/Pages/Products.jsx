@@ -14,7 +14,7 @@ function Products() {
 
   const fetchDataFromServer = async (category) => {
     try {
-      const response = await fetch(`http://localhost:3000/product?category=${category}`);
+      const response = await fetch(`http://127.0.0.1:5000/products?category=${category}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
