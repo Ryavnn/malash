@@ -126,17 +126,23 @@ ul>li{
   align-items: flex-end;
   border-radius: 5px;
 }
-Link{
+.category-btn{
   height: 40px;
   width: 60%;
   border: none;
   border-radius: 5px;
   margin-bottom: 10px;
   text-decoration: none;
-  background-color: aqua;
+  background-color: rgb(235, 204, 137);
   height: 40px;
   width: 120px;
   border: none;
+  cursor: pointer;
+  color: #25c0c0;
+  font-size: 18px;
+  padding: 10px;
+  font-weight: 900;
+  text-align: center;
 
 }
 .cards{

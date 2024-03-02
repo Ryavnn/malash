@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "../App.css";
 import Navbar from "../components/Navbar";
 import image from "../assets/image.jpg"
+import { shopContext } from "../features/context";
 
 function Products() {
   const { category } = useParams();
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const {addToCart} = useContext(shopContext)
 
   useEffect(() => {
     console.log("Category:", category);
@@ -50,7 +52,7 @@ function Products() {
                 <p className="product-name">{item.productName}</p>
                 <div className="description">{item.description}</div>
                 <span>Ksh {item.price}</span>
-                <button className="add-to-cart">Add to cart</button>
+                <button className="add-to-cart" onClick={() => addToCart(item.id)}>Add to cart</button>
               </div>
             </div>
           ))
