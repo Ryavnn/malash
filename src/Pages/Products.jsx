@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import '../App.css';
+import "../App.css";
 import Navbar from "../components/Navbar";
+import image from "../assets/image.jpg"
 
 function Products() {
   const { category } = useParams();
@@ -15,7 +16,9 @@ function Products() {
 
   const fetchDataFromServer = async (category) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/products?category=${category}`);
+      const response = await fetch(
+        `http://127.0.0.1:5000/products?category=${category}`
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -33,23 +36,26 @@ function Products() {
 
   return (
     <div>
-        <Navbar />
-      <h1>{category}</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        categoryData && categoryData.map((item) => (
-          <div className="card-items" key={item.id}>
-            <img src={item.image} alt="" />
-            <div className="item-content">
-              <p className="product-name">{item.productName}</p>
-              <div className="description">{item.description}</div>
-              <span>Ksh {item.price}</span>
-              <button className="add-to-cart">Add to cart</button>
+      <Navbar />
+      <h1 className="page-header">{category}</h1>
+      <section className="product-list">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          categoryData &&
+          categoryData.map((item) => (
+            <div className="card-items" key={item.id}>
+              <img src={image} alt="" />
+              <div className="item-content">
+                <p className="product-name">{item.productName}</p>
+                <div className="description">{item.description}</div>
+                <span>Ksh {item.price}</span>
+                <button className="add-to-cart">Add to cart</button>
+              </div>
             </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+      </section>
     </div>
   );
 }

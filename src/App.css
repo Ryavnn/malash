@@ -161,8 +161,15 @@ Link{
   width: 90px;
   
 }
+.product-list{
+  min-height: 70vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 .card-items {
-  width: 300px;
+  max-width: 25%;
+  min-height: 400px;
   padding: 20px;
   background-color: #fff; 
   border-radius: 10px; 
@@ -171,7 +178,8 @@ Link{
 }
 
 .card-items img {
-  width: 100%; 
+  width: 80%; 
+  height: 70%;
   border-radius: 8px;
 }
 .item-content{
@@ -199,5 +207,11 @@ Link{
   display: flex;
   flex-wrap: wrap;
 }
+
+.page-header{
+  text-align: center;
+  margin-top: 20px;
+}
+
 
 
