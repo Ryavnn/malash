@@ -220,6 +220,50 @@ ul>li{
   text-align: center;
   margin-top: 20px;
 }
+.log-in{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50vh;
+  width: auto;
+  border: 2px solid grey;
+  border-radius: 20px;
+}
+.form-container{
+  height: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+.form-container > input{
+  height: 40px;
+  width: 350px;
+  outline: none;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid gray;
+}
 
+.form-container > button{
+  height: 50px;
+  width: 350px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  background-color: #6262fa;
+  color: #fff;
+}
+.form-text{
+ align-self: flex-start;
+}
+#create-account{
+  color: #6262fa;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 
