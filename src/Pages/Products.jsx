@@ -1,36 +1,42 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import '../App.css';
 
 function Products() {
   const { category } = useParams();
   const [categoryData, setCategoryData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Category:", category);
     fetchDataFromServer(category);
   }, [category]);
 
   const fetchDataFromServer = async (category) => {
     try {
       const response = await fetch(`http://localhost:3000/product?category=${category}`);
-  
+
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-    }
-    console.log("data fetched")
-  
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       const jsonData = await response.json();
       setCategoryData(jsonData);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error.message);
       alert("Error fetching data");
+      setLoading(false);
     }
-  }
+  };
+
   return (
-    <>
+    <div>
       <h1>{category}</h1>
-      {categoryData &&
-        categoryData.map((item) => (
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        categoryData && categoryData.map((item) => (
           <div className="card-items" key={item.id}>
             <img src={item.image} alt="" />
             <div className="item-content">
@@ -40,8 +46,9 @@ function Products() {
               <button className="add-to-cart">Add to cart</button>
             </div>
           </div>
-        ))}
-    </>
+        ))
+      )}
+    </div>
   );
 }
 
