@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import '../App.css';
 
 function Products() {
   const { category } = useParams();
@@ -14,8 +15,9 @@ function Products() {
       const response = await fetch(`http://localhost:3000/product?category=${category}`);
   
       if (!response.ok) {
-        console.log("data fetched")
-      }
+        throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    console.log("data fetched")
   
       const jsonData = await response.json();
       setCategoryData(jsonData);
@@ -28,13 +30,13 @@ function Products() {
     <>
       <h1>{category}</h1>
       {categoryData &&
-        categoryData.map((product) => (
-          <div className="card-items" key={product.id}>
-            <img src="" alt="" />
+        categoryData.map((item) => (
+          <div className="card-items" key={item.id}>
+            <img src={item.image} alt="" />
             <div className="item-content">
-              <p className="product-name">{product.productName}</p>
-              <div className="description">{product.description}</div>
-              <span>{product.price}</span>
+              <p className="product-name">{item.productName}</p>
+              <div className="description">{item.description}</div>
+              <span>{item.price}</span>
               <button className="add-to-cart">Add to cart</button>
             </div>
           </div>
