@@ -44,7 +44,7 @@ function Products() {
             <div className="item-content">
               <p className="product-name">{item.productName}</p>
               <div className="description">{item.description}</div>
-              <span>{item.price}</span>
+              <span>Ksh {item.price}</span>
               <button className="add-to-cart">Add to cart</button>
             </div>
           </div>
