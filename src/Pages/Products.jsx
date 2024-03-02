@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "../App.css";
 import Navbar from "../components/Navbar";
-import image from "../assets/image.jpg"
-import { shopContext } from "../features/context";
+import Card from "../components/Card";
+
 
 function Products() {
   const { category } = useParams();
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const {addToCart} = useContext(shopContext)
+
 
   useEffect(() => {
     console.log("Category:", category);
@@ -46,15 +46,7 @@ function Products() {
         ) : (
           categoryData &&
           categoryData.map((item) => (
-            <div className="card-items" key={item.id}>
-              <img src={image} alt="" />
-              <div className="item-content">
-                <p className="product-name">{item.productName}</p>
-                <div className="description">{item.description}</div>
-                <span>Ksh {item.price}</span>
-                <button className="add-to-cart" onClick={() => addToCart(item.id)}>Add to cart</button>
-              </div>
-            </div>
+            <Card key={item.id} data={item} /> 
           ))
         )}
       </section>
