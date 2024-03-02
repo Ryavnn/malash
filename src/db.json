@@ -3,6 +3,7 @@
         {
             "id": 1,
             "category": "men",
+            "image" : "https://princesspolly.co.uk/cdn/shop/products/DANIELA-MINI-DRESS-WHITE.jpg?v=1614614522&width=767",
             "productName": "Dress",
             "description": "A black dress",
             "price": "1200"
@@ -10,6 +11,7 @@
         {
             "id": 2,
             "category": "women",
+            "image" : "https://princesspolly.co.uk/cdn/shop/products/DANIELA-MINI-DRESS-WHITE.jpg?v=1614614522&width=767",
             "productName": "Dress",
             "description": "A black dress",
             "price": "1200"
@@ -25,6 +27,7 @@
         {
             "id": 4,
             "category": "footwear",
+            "image" : "https://princesspolly.co.uk/cdn/shop/products/DANIELA-MINI-DRESS-WHITE.jpg?v=1614614522&width=767",
             "productName": "Dress",
             "description": "A black dress",
             "price": "1200"

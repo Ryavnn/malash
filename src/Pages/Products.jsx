@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import '../App.css';
+import Navbar from "../components/Navbar";
 
 function Products() {
   const { category } = useParams();
@@ -32,6 +33,7 @@ function Products() {
 
   return (
     <div>
+        <Navbar />
       <h1>{category}</h1>
       {loading ? (
         <p>Loading...</p>
