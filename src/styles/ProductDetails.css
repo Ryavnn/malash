@@ -1,0 +1,76 @@
+/* ProductDetails.css */
+
+/* Container styles */
+.product-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Product name styles */
+  .product-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Product description styles */
+  .product-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Product price styles */
+  .product-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Product image styles */
+  .product-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  /* Reviews section styles */
+  .reviews {
+    margin-top: 40px;
+  }
+  
+  /* Reviews heading styles */
+  .reviews-heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Review list styles */
+  .review-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Review item styles */
+  .review-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  /* Review rating styles */
+  .review-rating {
+    font-weight: bold;
+  }
+  
+  /* Review comment styles */
+  .review-comment {
+    margin-top: 5px;
+  }
+  

@@ -46,3 +46,20 @@
 .cartItem .remove-from-cart:hover {
     background-color: #cc0000;
 }
+
+
+.rating {
+    margin-top: 8px;
+  }
+  
+  .star {
+    cursor: pointer;
+    color: #ccc;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+  }
+  
+  .star:hover,
+  .star.active {
+    color: #fbbf24;
+  }
