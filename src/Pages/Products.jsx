@@ -4,12 +4,10 @@ import "../App.css";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 
-
 function Products() {
   const { category } = useParams();
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     console.log("Category:", category);
@@ -19,16 +17,18 @@ function Products() {
   const fetchDataFromServer = async (categoryName) => {
     const token = localStorage.getItem('access_token');
     try {
-      const response = await fetch(
-        `http://127.0.0.1:5000/api/products?category=${categoryName}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include'
-        }
-      );
+      let url = `http://127.0.0.1:5000/api/products`;
+      if (categoryName) {
+        url += `?category=${categoryName}`;
+      }
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
