@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import Navbar from './Navbar'; // Import Navbar component
-import '../styles/ProductDetails.css'; // Import your CSS file for ProductDetails styling
+import Navbar from './Navbar';
+import '../styles/ProductDetails.css';
 
 function ProductDetails() {
   const { productId } = useParams();

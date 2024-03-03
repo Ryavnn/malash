@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import CartItem from './CartItem';
 import Navbar from '../components/Navbar';
 import '../styles/Cart.css'; 
+import useAuthCheck from '../features/useAuthCheck';
 
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
+    useAuthCheck();
 
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem('cart')) || [];
