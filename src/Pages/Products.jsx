@@ -16,10 +16,18 @@ function Products() {
     fetchDataFromServer(category);
   }, [category]);
 
-  const fetchDataFromServer = async (category) => {
+  const fetchDataFromServer = async (categoryName) => {
+    const token = localStorage.getItem('access_token');
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/products?category=${category}`
+        `http://127.0.0.1:5000/api/products?category=${categoryName}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+        }
       );
 
       if (!response.ok) {
