@@ -2,8 +2,10 @@ import { useState, useEffect, useContext } from 'react';
 import CartItem from './CartItem';
 import Navbar from '../components/Navbar';
 import { shopContext } from './context';
+import useAuthCheck from '../features/useAuthCheck';
 
 function Cart() {
+  useAuthCheck();
   const { cartItems } = useContext(shopContext);
   const [cartItemsData, setCartItemsData] = useState([]);
 
