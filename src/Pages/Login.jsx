@@ -62,6 +62,11 @@ function Login() {
             setError("Invalid form data");
         }
     };
+
+
+    const handleCreateAccountClick = () => {
+        navigate("/signup");
+    };
     
 
     function handleChange(e) {
@@ -92,7 +97,10 @@ function Login() {
                     onChange={handleChange}
                 />
                 <button type="submit">Log in</button>
-                <p className="form-text">Don't have an account?<span id="create-account">Create account</span></p>
+                <p className="form-text">
+                    Don't have an account?
+                    <span id="create-account" onClick={handleCreateAccountClick}>Create account</span>
+                </p>
             </form>
         </div>
     );

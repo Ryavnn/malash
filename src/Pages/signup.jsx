@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
@@ -9,6 +9,7 @@ function Signup() {
     password: "",
   });
   const [error, setError] = useState(null);
+  const [responseMessage, setResponseMessage] = useState("");
 
   function validateForm() {
     if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
@@ -35,26 +36,37 @@ function Signup() {
 
     if (validateForm()) {
       try {
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch("http://127.0.0.1:5000/api/users", {
           method: "POST",
           headers: {
+            "Accept": "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         });
 
+        const responseData = await response.json();
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          setError(responseData.error || "Failed to sign up");
+          setResponseMessage("");
+        } else {
+          setResponseMessage(responseData.message || "Successfully signed up!");
+          setError("");
         }
-
-        const newUser = await response.json();
-        console.log("User successfully signed up:", newUser);
-        navigate("/pages/HomePage");
       } catch (error) {
         console.error("Error signing up:", error.message);
+        setError("An error occurred while signing up");
+        setResponseMessage("");
       }
     }
   };
+
+  useEffect(() => {
+    if (responseMessage) {
+      window.alert(responseMessage);
+      navigate("/login");
+    }
+  }, [responseMessage, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
