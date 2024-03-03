@@ -1,0 +1,21 @@
+.cart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.cart-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.cart-items-container {
+    display: grid;
+    gap: 20px;
+}
+
+/* Styles for empty cart message */
+.cart-items-container p {
+    font-size: 18px;
+    text-align: center;
+}

@@ -1,33 +1,37 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import CartItem from './CartItem';
 import Navbar from '../components/Navbar';
-import { shopContext } from './context';
-import useAuthCheck from '../features/useAuthCheck';
+import '../styles/Cart.css'; 
 
 function Cart() {
-  useAuthCheck();
-  const { cartItems } = useContext(shopContext);
-  const [cartItemsData, setCartItemsData] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    setCartItemsData(Object.values(cartItems).filter(item => item.id === 1));
-  }, [cartItems]);
+    useEffect(() => {
+        const items = JSON.parse(localStorage.getItem('cart')) || [];
+        setCartItems(items);
+    }, []);
 
-  return (
-    <>
-      <Navbar />
-      <div className="cart">
+    const handleRemoveItem = (itemId) => {
+        const updatedCartItems = cartItems.filter(item => item.id !== itemId);
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+    };
+
+    return (
         <div>
-          <h1>Your cart items</h1>
+            <Navbar />
+            <h1>Your Cart Items</h1>
+            <div className="cart-items">
+                {cartItems.length > 0 ? (
+                    cartItems.map(item => (
+                        <CartItem key={item.id} data={item} onRemove={handleRemoveItem} />
+                    ))
+                ) : (
+                    <p>No items in cart.</p>
+                )}
+            </div>
         </div>
-        <div className="cart-items">
-          {cartItemsData.map((item) => (
-            <CartItem key={item.id} data={item} />
-          ))}
-        </div>
-      </div>
-    </>
-  );
+    );
 }
 
 export default Cart;

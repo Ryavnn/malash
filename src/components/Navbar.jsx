@@ -1,14 +1,12 @@
+// Navbar.jsx
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
-    const navigate = useNavigate();
-
-    const isLoggedIn = localStorage.getItem('access_token');
+    const isLoggedIn = !!localStorage.getItem('access_token');
 
     const handleLogout = () => {
         localStorage.removeItem('access_token');
-        navigate('/login');
+        window.location.href = '/login'; // Redirect to login after logout
     };
 
     return (
@@ -19,19 +17,19 @@ function Navbar() {
                 </div>
                 <div className="center-links">
                     <ul>
-                        {/* <li><Link to="/">Home page</Link></li> */}
-                        {/* <li><Link to="/products">Products</Link></li> */}
-                        {/* <li><Link to="/about">About us</Link></li> */}
-                        {/* <li><Link to="/blog">Blog</Link></li> */}
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/products">Products</Link></li>
+                        <li><Link to="/about">About Us</Link></li>
+                        <li><Link to="/blog">Blog</Link></li>
                     </ul>
                 </div>
-                <div className="left-links">
+                <div className="right-links">
                     <ul>
-                        <Link className="nav-links" to="/cart">Cart</Link>
+                        <li><Link to="/cart">Cart</Link></li>
                         {isLoggedIn ? (
-                            <li><button onClick={handleLogout} className="nav-links">Logout</button></li>
+                            <li><button onClick={handleLogout}>Logout</button></li>
                         ) : (
-                            <Link className="nav-links" to="/login">Login</Link>
+                            <li><Link to="/login">Login</Link></li>
                         )}
                     </ul>
                 </div>

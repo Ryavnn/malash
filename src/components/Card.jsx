@@ -1,14 +1,21 @@
 import PropTypes from 'prop-types';
 import image from '../assets/image.jpg';
-import { shopContext } from '../features/context';
-import { useContext } from 'react';
 
-function Card(props) {
-  const { id, description, price } = props.data;
-  const { addToCart } = useContext(shopContext);
+function Card({ data }) {
+  const { id, description, price } = data;
 
   const handleAddToCart = () => {
-    addToCart({ id, description, price });
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Check if the product already exists in the cart
+    const productExists = cart.some(product => product.id === id);
+    if (!productExists) {
+      const productToAdd = { id, description, price };
+      const updatedCart = [...cart, productToAdd];
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      alert("Item added to cart!");
+    } else {
+      alert("This item is already in your cart!");
+    }
   };
 
   return (
