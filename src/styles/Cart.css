@@ -1,21 +1,60 @@
+/* Cart.css */
+
 .cart-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
-.cart-heading {
+.cart-title {
     font-size: 24px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-.cart-items-container {
+.cart-items {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
 
-/* Styles for empty cart message */
-.cart-items-container p {
+.cart-items p {
     font-size: 18px;
+    color: #888;
+}
+
+@media screen and (max-width: 768px) {
+    .cart-items {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+.cart-items .no-items {
+    grid-column: 1 / -1;
     text-align: center;
+}
+
+.cartItem {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    grid-column: 1 / -1; /* Make the cart item occupy all grid columns */
+}
+
+.cartItem img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px; /* Adjust margin to add space between image and other content */
+}
+
+.cartItem .description {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.cartItem .price {
+    font-weight: bold;
 }

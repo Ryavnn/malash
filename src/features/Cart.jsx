@@ -18,16 +18,16 @@ function Cart() {
     };
 
     return (
-        <div>
+        <div className="cart-container">
             <Navbar />
-            <h1>Your Cart Items</h1>
+            <h1 className="cart-title">Your Cart Items</h1>
             <div className="cart-items">
                 {cartItems.length > 0 ? (
                     cartItems.map(item => (
                         <CartItem key={item.id} data={item} onRemove={handleRemoveItem} />
                     ))
                 ) : (
-                    <p>No items in cart.</p>
+                    <p className="no-items">No items in cart.</p>
                 )}
             </div>
         </div>

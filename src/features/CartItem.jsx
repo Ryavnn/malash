@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import '../styles/CartItem.css';
 
 function CartItem({ data, onRemove }) {
     const { id, description, price, image_url } = data;
