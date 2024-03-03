@@ -1,81 +1,101 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Login(){
-    const navigate = useNavigate()
-    const [formData , setFormData] = useState({
-        email : "",
-        password : ""
-    }) 
+function Login() {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
+    const [error, setError] = useState("");
 
-   function validateForm(){
-        let valid = true
+    function validateForm() {
+        let valid = true;
 
-        if(!formData.email.trim()){
-            valid = false
-        }else if(!/\S+@\S+\.\S+/.test(formData.email)){
-            valid = false
+        if (!formData.email.trim()) {
+            valid = false;
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            valid = false;
         }
 
-        if(!formData.password.trim()){
-
+        if (!formData.password.trim()) {
             valid = false;
         }
 
         return valid;
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            try {
+                const response = await fetch("http://127.0.0.1:5000/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: formData.email,
+                        password: formData.password,
+                    }),
+                });
     
-    const handleSubmit = async(e)=>{
-        e.preventDefault()
-        if (validateForm){
-            try{
-                const response = await fetch()
-                const users = await response.json()
-                const user = users.find(u => u.email === formData.email && u.password === formData.password)
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("Successfully logged in!");
     
-                if (user){
-                    console.log("Succesfully logged in!")
-                    navigate("/")
-                }else{
-                    console.log("Details not found")
+                    localStorage.setItem('access_token', data.access_token);
+    
+                    navigate("/");
+                } else {
+                    const responseData = await response.json();
+                    setError(responseData.error || "Failed to log in");
+                    console.log("Details not found or incorrect");
                 }
-            }catch(error){
-                console.log('Error:', error);
+            } catch (error) {
+                console.error('Error:', error);
+                setError("An error occurred while trying to log in.");
             }
-        }else{
-            console.log("invalid form data")
+        } else {
+            console.log("Invalid form data");
+            setError("Invalid form data");
         }
-    }
-    function handleChange(e){
-        const {name, value} = e.target
+    };
+    
+
+    function handleChange(e) {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]:value
-        })
+            [name]: value,
+        });
     }
-    return(
 
+    return (
         <div className="log-in">
             <h1>Login</h1>
+            {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit} className="form-container">
-                <input 
-                    type="email" 
+                <input
+                    type="email"
                     placeholder="Enter Email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                 />
-                <input 
-                    type="password" 
+                <input
+                    type="password"
                     placeholder="Password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                 />
                 <button type="submit">Log in</button>
-                <p className="form-text">Dont have an account?<span id="create-account">Create account</span></p>
+                <p className="form-text">Don't have an account?<span id="create-account">Create account</span></p>
             </form>
         </div>
-    )
+    );
 }
-export default Login
+
+export default Login;
