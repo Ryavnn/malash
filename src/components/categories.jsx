@@ -46,7 +46,7 @@ function Categories() {
     <section className="categories">
       {categories.length > 0 ? (
         categories.map((category) => (
-          <div className="category-item" key={category.id}>
+          <div className="category-item" key={category.id} style={{ backgroundImage: `url(${category.image_url})` }}>
             <Link to={`/products/${category.name}`} className="category-btn">
               {category.name}
             </Link>
