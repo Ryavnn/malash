@@ -6,16 +6,16 @@ import "../styles/CartItem.css";
 function CartItem({ data, onRemove }) {
     const { id, description, price, image_url } = data;
     const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState(""); // State to store comment
+    const [showModal, setShowModal] = useState(false); // State to manage modal visibility
 
     const handleRatingChange = (newRating) => {
         setRating(newRating);
-        const productId = data.id;
-        handleAddReview(productId, newRating);
+        setShowModal(true); // Show modal after rating is set
     };
 
-    const handleAddReview = (productId, rating) => {
+    const handleAddReview = () => {
         const userId = 1;
-        const comment = "This product exceeded my expectations. It's very reliable and performs well.";
         const createdAt = new Date().toISOString();
         const token = localStorage.getItem('access_token');
 
@@ -27,7 +27,7 @@ function CartItem({ data, onRemove }) {
             },
             body: JSON.stringify({
                 user_id: userId,
-                product_id: productId,
+                product_id: id,
                 rating: rating,
                 comment: comment,
                 created_at: createdAt
@@ -41,6 +41,7 @@ function CartItem({ data, onRemove }) {
         })
         .then(data => {
             console.log('Review created successfully:', data);
+            setShowModal(false); // Hide modal after review is submitted
         })
         .catch(error => {
             console.error('Error creating review:', error);
@@ -64,6 +65,19 @@ function CartItem({ data, onRemove }) {
                 ))}
             </div>
             <button className="remove-from-cart" onClick={() => onRemove(id)}>Remove from Cart</button>
+
+            {/* Modal for inputting comment */}
+            {showModal && (
+                <div className="modal">
+                    <textarea
+                        className="comment-input"
+                        placeholder="Enter your comment..."
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                    />
+                    <button className="submit-btn" onClick={handleAddReview}>Submit</button>
+                </div>
+            )}
         </div>
     );
 }
