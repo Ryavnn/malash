@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 function Navbar() {
     const navigate = useNavigate();
 
-    const isLoggedIn = localStorage.getItem('access_token'); // Adjust this condition based on your auth logic
+    const isLoggedIn = localStorage.getItem('access_token');
 
     const handleLogout = () => {
-        localStorage.removeItem('access_token'); // Remove the token from local storage (or clear auth state)
-        navigate('/login'); // Redirect to login page after logout
+        localStorage.removeItem('access_token');
+        navigate('/login');
     };
 
     return (
