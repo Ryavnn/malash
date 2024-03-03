@@ -19,20 +19,18 @@ function Navbar() {
                 </div>
                 <div className="center-links">
                     <ul>
-                        <li><Link to="/">Home page</Link></li>
-                        <li><Link to="/products">Products</Link></li>
-                        <li><Link to="/about">About us</Link></li>
-                        <li><Link to="/blog">Blog</Link></li>
+                        {/* <li><Link to="/">Home page</Link></li> */}
+                        {/* <li><Link to="/products">Products</Link></li> */}
+                        {/* <li><Link to="/about">About us</Link></li> */}
+                        {/* <li><Link to="/blog">Blog</Link></li> */}
                     </ul>
                 </div>
                 <div className="left-links">
                     <ul>
                         <Link className="nav-links" to="/cart">Cart</Link>
                         {isLoggedIn ? (
-                            // Show logout button if user is logged in
                             <li><button onClick={handleLogout} className="nav-links">Logout</button></li>
                         ) : (
-                            // Show login button if user is not logged in
                             <Link className="nav-links" to="/login">Login</Link>
                         )}
                     </ul>
