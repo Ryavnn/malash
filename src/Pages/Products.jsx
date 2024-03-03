@@ -3,11 +3,9 @@ import { useParams } from "react-router";
 import "../App.css";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
-import useAuthCheck from '../features/useAuthCheck';
 
 
 function Products() {
-  useAuthCheck();
   const { category } = useParams();
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
