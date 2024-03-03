@@ -114,7 +114,7 @@ ul>li{
   margin-top: 20px;
 }
 .category-item{
-  background: url(assets/banner.jpg);
+  /* background: url(assets/banner.jpg); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
